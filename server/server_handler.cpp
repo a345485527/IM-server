@@ -48,7 +48,8 @@ void init()
 
     //init protocol handler array
     protocol_handler_array[P_C2S_LOGIN]=onCSLogin;
-    protocol_handler_array[P_C2S_MES]=onCSMes;
+    protocol_handler_array[P_C2S_MES_ALL]=onCSMesAll;
+    protocol_handler_array[P_C2S_LOGOUT]=onCSLogout;
     
     //init mutex
     pthread_mutex_init(&map_mutex, NULL);
@@ -64,8 +65,8 @@ void acceptClient()
     {
         len=sizeof(cliaddr);
         sockfd=accept(listenfd, (struct sockaddr*)&cliaddr, &len);
-        cout<<"connection from" <<inet_ntop(AF_INET, &cliaddr.sin_addr, buff, sizeof(buff))
-            <<"port is " << ntohs(cliaddr.sin_port);
+        cout<<"connection from  " <<inet_ntop(AF_INET, &cliaddr.sin_addr, buff, sizeof(buff))
+            <<"port is  " << ntohs(cliaddr.sin_port)<<"\n";
 
         //if the size of onlineVec full,realloc it and init new space
         pthread_mutex_lock(&map_mutex);
@@ -79,7 +80,7 @@ void acceptClient()
                 onlineVec.pOnlineClient[i].name[0]='\0';
             }
         }
-        pthread_mutex_lock(&map_mutex);
+        pthread_mutex_unlock(&map_mutex);
 
         pthread_create(&tid, NULL, creatLogin, (void *)sockfd);
     }
@@ -90,7 +91,7 @@ void* creatLogin(void *arg)
     pthread_detach(pthread_self());
     int sockfd=(int)arg;
     int len;
-    char buf[400];
+    char buf[MAX_PACKET_LEN]={ 0 };
     while(1)
     {
         if((len=recv(sockfd, buf, sizeof(buf), 0))>0)
@@ -101,11 +102,11 @@ void* creatLogin(void *arg)
         // connection closed by client,
         else if(len==0)
         {
-            logoutHelp(sockfd);
+        //  logoutHelp(sockfd);
+            close(sockfd);
             break;
         }
     }
-    close(sockfd);
     pthread_exit(NULL);
 }
 
@@ -125,6 +126,7 @@ void * listenCmd(void* arg)
         read(STDIN_FILENO, cmd, sizeof(cmd));
         if((strncmp(cmd,"exit",4))==0)
         {
+            pthread_mutex_destroy(&map_mutex);
             free(onlineVec.pOnlineClient);
             close(sockfd);
             // all threads will be exit,close their own socked auto
@@ -144,6 +146,8 @@ void loginHelp(p_cs_login* login_ptr,string name,int sockfd)
            {
                strncpy(onlineVec.pOnlineClient[i].name,login_ptr->name , MAX_NAME_LEN);
                onlineVec.pOnlineClient[i].name[MAX_NAME_LEN-1]='\0';
+               onlineVec.pOnlineClient[i].isUsed=true;
+               break;
            }
         }
 
@@ -158,8 +162,9 @@ void loginHelp(p_cs_login* login_ptr,string name,int sockfd)
             sizeof(client)*onlineVec.size);
 
     // send the online client to the new login client;
-    send(sockfd, update_packet_ptr, update_packet_ptr->plen, 0);
+    int n= send(sockfd, update_packet_ptr, update_packet_ptr->plen, 0);
     free(update_packet_ptr);
+
 
     // send the new login client to the online client
     p_sc_new_login new_login_packet;
@@ -177,28 +182,24 @@ void loginHelp(p_cs_login* login_ptr,string name,int sockfd)
 }
 
 
-void logoutHelp(int sockfd)
+void logoutHelp(string name,int sockfd)
 {
-    string name;
     p_sc_logout logout_packet;
+    strncpy(logout_packet.name, name.c_str(), name.size());
+    logout_packet.name[name.size()]='\0';
+    logout_packet.name[MAX_NAME_LEN-1]='\0';
+
     pthread_mutex_lock(&map_mutex);
 
     // find the closed client socket,and delete it from map,and tell other online client
+    map<string,int>::iterator del_iter=sock_map.find(name);
+
+    if(del_iter==sock_map.end())
+        return;
+    sock_map.erase(del_iter);
     for(map<string,int>::iterator iter=sock_map.begin();iter!=sock_map.end();iter++)
     {
-        if(iter->second==sockfd)
-        {
-            name=iter->first;
-            sock_map.erase(iter);
-            break;
-        }
-        else
-        {
-            strncpy(logout_packet.name, (iter->first).c_str(), (iter->first).size());
-            logout_packet.name[(iter->first).size()]='\0';
-            logout_packet.name[MAX_NAME_LEN-1]='\0';
-            send(iter->second, &logout_packet, logout_packet.plen, 0);
-        }
+        send(iter->second, &logout_packet, logout_packet.plen, 0);
     }
 
     // delete it from onlineVec

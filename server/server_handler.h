@@ -29,4 +29,4 @@ void *listenCmd(void *);
 /* add new client to clientVector,and update friend-list  */
 void loginHelp(p_cs_login*,std::string,int);
 /* delete the logout client socket  */
-void logoutHelp(int);
+void logoutHelp(std::string,int);

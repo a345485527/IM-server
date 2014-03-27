@@ -1,0 +1,115 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.7	//
+INIT_CLIENT_NUM	protocol.h	10;"	d
+MAX_MES_LEN	protocol.h	11;"	d
+MAX_NAME_LEN	protocol.h	9;"	d
+PROTOCOL_H	protocol.h	7;"	d
+P_C2S_LOGIN	protocol.h	/^    P_C2S_LOGIN,$/;"	e	enum:__anon1
+P_C2S_LOGOUT	protocol.h	/^    P_C2S_LOGOUT,$/;"	e	enum:__anon1
+P_C2S_MES_ALL	protocol.h	/^    P_C2S_MES_ALL,$/;"	e	enum:__anon1
+P_PROTOCOL_NUM	protocol.h	/^    P_PROTOCOL_NUM$/;"	e	enum:__anon1
+P_S2C_LOGIN_RESPONE	protocol.h	/^    P_S2C_LOGIN_RESPONE,$/;"	e	enum:__anon1
+P_S2C_LOGOUT	protocol.h	/^    P_S2C_LOGOUT,$/;"	e	enum:__anon1
+P_S2C_MES_ALL	protocol.h	/^    P_S2C_MES_ALL,$/;"	e	enum:__anon1
+P_S2C_NEW_LOGIN	protocol.h	/^    P_S2C_NEW_LOGIN,$/;"	e	enum:__anon1
+P_S2C_UPDATE_FRIENDLIST	protocol.h	/^    P_S2C_UPDATE_FRIENDLIST,$/;"	e	enum:__anon1
+acceptClient	server_handler.cpp	/^void acceptClient()$/;"	f	signature:()
+acceptClient	server_handler.h	/^void acceptClient();$/;"	p	signature:()
+bzero	server_handler.h	4;"	d
+cliaddr	main_server.cpp	/^struct sockaddr_in cliaddr;$/;"	v	typeref:struct:sockaddr_in
+client	protocol.h	/^struct client{$/;"	s
+client::isUsed	protocol.h	/^    bool isUsed;$/;"	m	struct:client	access:public
+client::name	protocol.h	/^    char name[MAX_NAME_LEN];$/;"	m	struct:client	access:public
+clientVector	protocol.h	/^struct clientVector{$/;"	s
+clientVector::pOnlineClient	protocol.h	/^    struct client* pOnlineClient;$/;"	m	struct:clientVector	typeref:struct:clientVector::client	access:public
+clientVector::size	protocol.h	/^    int size;$/;"	m	struct:clientVector	access:public
+creatLogin	server_handler.cpp	/^void* creatLogin(void *arg)$/;"	f	signature:(void *arg)
+creatLogin	server_handler.h	/^void *creatLogin(void *);$/;"	p	signature:(void *)
+createListenCmd	server_handler.cpp	/^void createListenCmd()$/;"	f	signature:()
+createListenCmd	server_handler.h	/^void createListenCmd();$/;"	p	signature:()
+dest_name	protocol.h	/^    char dest_name[MAX_NAME_LEN];$/;"	m	struct:p_sc_mes_all	access:public
+init	server_handler.cpp	/^void init()$/;"	f	signature:()
+init	server_handler.h	/^void init();$/;"	p	signature:()
+isSuccess	protocol.h	/^    bool isSuccess;$/;"	m	struct:p_sc_login_respone	access:public
+isUsed	protocol.h	/^    bool isUsed;$/;"	m	struct:client	access:public
+listenCmd	server_handler.cpp	/^void * listenCmd(void* arg)$/;"	f	signature:(void* arg)
+listenCmd	server_handler.h	/^void *listenCmd(void *);$/;"	p	signature:(void *)
+listenfd	main_server.cpp	/^int listenfd;$/;"	v
+loginHelp	server_handler.cpp	/^void loginHelp(p_cs_login* login_ptr,string name,int sockfd)$/;"	f	signature:(p_cs_login* login_ptr,string name,int sockfd)
+loginHelp	server_handler.h	/^void loginHelp(p_cs_login*,std::string,int);$/;"	p	signature:(p_cs_login*,std::string,int)
+logoutHelp	server_handler.cpp	/^void logoutHelp(string name,int sockfd)$/;"	f	signature:(string name,int sockfd)
+logoutHelp	server_handler.h	/^void logoutHelp(std::string,int);$/;"	p	signature:(std::string,int)
+main	main_server.cpp	/^int main()$/;"	f	signature:()
+map_mutex	main_server.cpp	/^pthread_mutex_t map_mutex;$/;"	v
+mes	protocol.h	/^    char mes[MAX_MES_LEN];$/;"	m	struct:p_sc_mes_all	access:public
+message	protocol.h	/^    char message[MAX_MES_LEN];$/;"	m	struct:p_cs_mes_all	access:public
+name	protocol.h	/^    char name[MAX_NAME_LEN];$/;"	m	struct:client	access:public
+name	protocol.h	/^    char name[MAX_NAME_LEN];$/;"	m	struct:p_cs_logout	access:public
+name	protocol.h	/^    char name[MAX_NAME_LEN];$/;"	m	struct:p_sc_logout	access:public
+name	protocol.h	/^    char name[MAX_NAME_LEN];$/;"	m	struct:p_sc_new_login	access:public
+name	protocol.h	/^   char name[MAX_NAME_LEN];$/;"	m	struct:p_cs_login	access:public
+objects	Makefile	/^objects=main_server.o server_handler.o process_protocol.o$/;"	m
+onCSLogin	process_protocol.cpp	/^void onCSLogin(p_base *base_ptr,int sockfd)$/;"	f	signature:(p_base *base_ptr,int sockfd)
+onCSLogin	process_protocol.h	/^void onCSLogin(p_base *base_ptr,int sockfd);$/;"	p	signature:(p_base *base_ptr,int sockfd)
+onCSLogout	process_protocol.cpp	/^void onCSLogout(p_base *ptr,int sockfd)$/;"	f	signature:(p_base *ptr,int sockfd)
+onCSLogout	process_protocol.h	/^void onCSLogout(p_base*,int);$/;"	p	signature:(p_base*,int)
+onCSMesAll	process_protocol.cpp	/^void onCSMesAll(p_base* base_ptr,int sockfd)$/;"	f	signature:(p_base* base_ptr,int sockfd)
+onCSMesAll	process_protocol.h	/^void onCSMesAll(p_base *base_ptr,int sockfd);$/;"	p	signature:(p_base *base_ptr,int sockfd)
+onlineClient	protocol.h	/^    struct client onlineClient[];$/;"	m	struct:p_sc_update_friendList	typeref:struct:p_sc_update_friendList::client	access:public
+onlineVec	main_server.cpp	/^struct clientVector onlineVec;$/;"	v	typeref:struct:clientVector
+pOnlineClient	protocol.h	/^    struct client* pOnlineClient;$/;"	m	struct:clientVector	typeref:struct:clientVector::client	access:public
+p_base	protocol.h	/^    p_base(int name,int len):pname(name),plen(len)$/;"	f	struct:p_base	access:public	signature:(int name,int len)
+p_base	protocol.h	/^struct p_base{$/;"	s
+p_base::p_base	protocol.h	/^    p_base(int name,int len):pname(name),plen(len)$/;"	f	struct:p_base	access:public	signature:(int name,int len)
+p_base::plen	protocol.h	/^    int plen;$/;"	m	struct:p_base	access:public
+p_base::pname	protocol.h	/^    int pname;$/;"	m	struct:p_base	access:public
+p_cs_login	protocol.h	/^   p_cs_login():p_base(P_C2S_LOGIN,sizeof(p_cs_login))$/;"	f	struct:p_cs_login	access:public	signature:()
+p_cs_login	protocol.h	/^struct p_cs_login:public p_base{$/;"	s	inherits:p_base
+p_cs_login::name	protocol.h	/^   char name[MAX_NAME_LEN];$/;"	m	struct:p_cs_login	access:public
+p_cs_login::p_cs_login	protocol.h	/^   p_cs_login():p_base(P_C2S_LOGIN,sizeof(p_cs_login))$/;"	f	struct:p_cs_login	access:public	signature:()
+p_cs_logout	protocol.h	/^    p_cs_logout():p_base(P_C2S_LOGOUT,sizeof(p_cs_logout))$/;"	f	struct:p_cs_logout	access:public	signature:()
+p_cs_logout	protocol.h	/^struct p_cs_logout:public p_base{$/;"	s	inherits:p_base
+p_cs_logout::name	protocol.h	/^    char name[MAX_NAME_LEN];$/;"	m	struct:p_cs_logout	access:public
+p_cs_logout::p_cs_logout	protocol.h	/^    p_cs_logout():p_base(P_C2S_LOGOUT,sizeof(p_cs_logout))$/;"	f	struct:p_cs_logout	access:public	signature:()
+p_cs_mes_all	protocol.h	/^    p_cs_mes_all():p_base(P_C2S_MES_ALL,sizeof(p_cs_mes_all))$/;"	f	struct:p_cs_mes_all	access:public	signature:()
+p_cs_mes_all	protocol.h	/^struct p_cs_mes_all:public p_base{$/;"	s	inherits:p_base
+p_cs_mes_all::message	protocol.h	/^    char message[MAX_MES_LEN];$/;"	m	struct:p_cs_mes_all	access:public
+p_cs_mes_all::p_cs_mes_all	protocol.h	/^    p_cs_mes_all():p_base(P_C2S_MES_ALL,sizeof(p_cs_mes_all))$/;"	f	struct:p_cs_mes_all	access:public	signature:()
+p_cs_mes_all::src_name	protocol.h	/^    char src_name[MAX_NAME_LEN];$/;"	m	struct:p_cs_mes_all	access:public
+p_sc_login_respone	protocol.h	/^    p_sc_login_respone():p_base(P_S2C_LOGIN_RESPONE,sizeof(p_sc_login_respone))$/;"	f	struct:p_sc_login_respone	access:public	signature:()
+p_sc_login_respone	protocol.h	/^struct p_sc_login_respone:public p_base{$/;"	s	inherits:p_base
+p_sc_login_respone::isSuccess	protocol.h	/^    bool isSuccess;$/;"	m	struct:p_sc_login_respone	access:public
+p_sc_login_respone::p_sc_login_respone	protocol.h	/^    p_sc_login_respone():p_base(P_S2C_LOGIN_RESPONE,sizeof(p_sc_login_respone))$/;"	f	struct:p_sc_login_respone	access:public	signature:()
+p_sc_logout	protocol.h	/^    p_sc_logout():p_base(P_S2C_LOGOUT,sizeof(p_sc_logout))$/;"	f	struct:p_sc_logout	access:public	signature:()
+p_sc_logout	protocol.h	/^struct p_sc_logout:public p_base{$/;"	s	inherits:p_base
+p_sc_logout::name	protocol.h	/^    char name[MAX_NAME_LEN];$/;"	m	struct:p_sc_logout	access:public
+p_sc_logout::p_sc_logout	protocol.h	/^    p_sc_logout():p_base(P_S2C_LOGOUT,sizeof(p_sc_logout))$/;"	f	struct:p_sc_logout	access:public	signature:()
+p_sc_mes_all	protocol.h	/^    p_sc_mes_all():p_base(P_S2C_MES_ALL,sizeof(p_sc_mes_all))$/;"	f	struct:p_sc_mes_all	access:public	signature:()
+p_sc_mes_all	protocol.h	/^struct p_sc_mes_all:public p_base{$/;"	s	inherits:p_base
+p_sc_mes_all::dest_name	protocol.h	/^    char dest_name[MAX_NAME_LEN];$/;"	m	struct:p_sc_mes_all	access:public
+p_sc_mes_all::mes	protocol.h	/^    char mes[MAX_MES_LEN];$/;"	m	struct:p_sc_mes_all	access:public
+p_sc_mes_all::p_sc_mes_all	protocol.h	/^    p_sc_mes_all():p_base(P_S2C_MES_ALL,sizeof(p_sc_mes_all))$/;"	f	struct:p_sc_mes_all	access:public	signature:()
+p_sc_new_login	protocol.h	/^    p_sc_new_login():p_base(P_S2C_NEW_LOGIN,sizeof(p_sc_new_login))$/;"	f	struct:p_sc_new_login	access:public	signature:()
+p_sc_new_login	protocol.h	/^struct p_sc_new_login:public p_base{$/;"	s	inherits:p_base
+p_sc_new_login::name	protocol.h	/^    char name[MAX_NAME_LEN];$/;"	m	struct:p_sc_new_login	access:public
+p_sc_new_login::p_sc_new_login	protocol.h	/^    p_sc_new_login():p_base(P_S2C_NEW_LOGIN,sizeof(p_sc_new_login))$/;"	f	struct:p_sc_new_login	access:public	signature:()
+p_sc_update_friendList	protocol.h	/^    p_sc_update_friendList():p_base(P_S2C_UPDATE_FRIENDLIST,sizeof(p_sc_update_friendList))$/;"	f	struct:p_sc_update_friendList	access:public	signature:()
+p_sc_update_friendList	protocol.h	/^struct p_sc_update_friendList:public p_base{$/;"	s	inherits:p_base
+p_sc_update_friendList::onlineClient	protocol.h	/^    struct client onlineClient[];$/;"	m	struct:p_sc_update_friendList	typeref:struct:p_sc_update_friendList::client	access:public
+p_sc_update_friendList::p_sc_update_friendList	protocol.h	/^    p_sc_update_friendList():p_base(P_S2C_UPDATE_FRIENDLIST,sizeof(p_sc_update_friendList))$/;"	f	struct:p_sc_update_friendList	access:public	signature:()
+p_sc_update_friendList::size	protocol.h	/^    int size;$/;"	m	struct:p_sc_update_friendList	access:public
+plen	protocol.h	/^    int plen;$/;"	m	struct:p_base	access:public
+pname	protocol.h	/^    int pname;$/;"	m	struct:p_base	access:public
+protocolHandler	main_server.cpp	/^typedef void (*protocolHandler)(p_base*,int);$/;"	t	file:
+protocolHandler	server_handler.h	/^typedef void (*protocolHandler)(p_base*,int);$/;"	t
+protocol_handler_array	main_server.cpp	/^protocolHandler protocol_handler_array[P_PROTOCOL_NUM];$/;"	v
+servaddr	main_server.cpp	/^struct sockaddr_in servaddr;$/;"	v	typeref:struct:sockaddr_in
+size	protocol.h	/^    int size;$/;"	m	struct:clientVector	access:public
+size	protocol.h	/^    int size;$/;"	m	struct:p_sc_update_friendList	access:public
+sock_map	main_server.cpp	/^std::map<std::string,int> sock_map;$/;"	v
+sockfd	main_server.cpp	/^int sockfd;$/;"	v
+src_name	protocol.h	/^    char src_name[MAX_NAME_LEN];$/;"	m	struct:p_cs_mes_all	access:public
