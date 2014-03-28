@@ -145,12 +145,27 @@ void recvPacket()
 {
     int n;
     char buf[MAX_PACKET_LEN]={0};
+    char *buf_ptr=buf;
+
+    // TLV format
     while(1)
     {
-       if((n=recv(sockfd, buf, sizeof(buf), 0))>0)
+        // firts, recv the type , stands the type of packet
+       if((n=recv(sockfd, buf, sizeof(int), 0))>0)
        {
+           buf_ptr+=n;
+           *buf_ptr='\0';
+           // second, recv the length,stands the total length of packet
+           n=recv(sockfd,buf_ptr,sizeof(int),0);
+           *(buf_ptr+n)='\0';
+           int packet_len=(int)*buf_ptr;           
+           buf_ptr+=n;
+           // then, recv the value
+           recv(sockfd,buf_ptr,packet_len-2*sizeof(int),0);
            p_base *ptr=(p_base*)buf;
            protocol_handler_array[ptr->pname](ptr);
+           // set buffer pointer to the start of buf again
+           buf_ptr=buf;
        }
        else
        {
